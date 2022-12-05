@@ -4,7 +4,7 @@
       <input
         type="text"
         class="form-control"
-        placeholder="Search by title"
+        placeholder="Поиск по title"
         [(ngModel)]="title"
       />
       <div class="input-group-append">
@@ -13,31 +13,31 @@
           type="button"
           (click)="searchTitle()"
         >
-          Search
+          Найти
         </button>
       </div>
     </div>
   </div>
   <div class="col-md-6 mt-3">
-    <h4 class="mb-3">Tutorials List</h4>
+    <h4 class="mb-3">Список записей</h4>
     <ul class="list-group mb-3">
       <li
         class="list-group-item"
-        *ngFor="let tutorial of tutorials; let i = index"
+        *ngFor="let entry of entries; let i = index"
         [class.active]="i == currentIndex"
-        (click)="setActiveTutorial(tutorial, i)"
+        (click)="setActiveEntry(entry, i)"
       >
-        {{ tutorial.title }}
+        {{ entry.title }}
       </li>
     </ul>
-    <button class="btn btn-sm btn-danger" (click)="removeAllTutorials()">
-      Remove All
+    <button class="btn btn-sm btn-danger" (click)="removeAllEntries()">
+      Удалить все
     </button>
   </div>
   <div class="col-md-6">
-    <app-tutorial-details
+    <app-entry-details
       [viewMode]="true"
-      [currentTutorial]="currentTutorial"
-    ></app-tutorial-details>
+      [currentEntry]="currentEntry"
+    ></app-entry-details>
   </div>
 </div>

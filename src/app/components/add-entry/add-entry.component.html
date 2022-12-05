@@ -1,5 +1,5 @@
 <div class=" mt-5">
-  <h1 class="mb-3 text-center">Add Tutorial</h1>
+  <h1 class="mb-3 text-center">Добавить запись в БД</h1>
   <div class="submit-form">
     <div *ngIf="!submitted">
       <div class="form-group mb-3">
@@ -9,7 +9,7 @@
           class="form-control"
           id="title"
           required
-          [(ngModel)]="tutorial.title"
+          [(ngModel)]="entry.title"
           name="title"
         />
       </div>
@@ -19,15 +19,15 @@
           class="form-control"
           id="description"
           required
-          [(ngModel)]="tutorial.description"
+          [(ngModel)]="entry.description"
           name="description"
         />
       </div>
-      <button (click)="saveTutorial()" class="btn btn-success">Submit</button>
+      <button (click)="saveEntry()" class="btn btn-success">Добавить</button>
     </div>
     <div *ngIf="submitted">
-      <h4>Tutorial was submitted successfully!</h4>
-      <button class="btn btn-success" (click)="newTutorial()">Add</button>
+      <h4>Запись успешно добавлена!</h4>
+      <button class="btn btn-success" (click)="newEntry()">Добавить</button>
     </div>
   </div>
 </div>

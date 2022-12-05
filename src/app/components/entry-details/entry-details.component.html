@@ -1,32 +1,32 @@
 <div *ngIf="viewMode; else editable">
-  <div *ngIf="currentTutorial.id">
-    <h4>Tutorial</h4>
+  <div *ngIf="currentEntry.id">
+    <h4>Entry</h4>
     <div>
-      <label><strong>Title:</strong></label> {{ currentTutorial.title }}
+      <label><strong>Title:</strong></label> {{ currentEntry.title }}
     </div>
     <div>
       <label><strong>Description:</strong></label>
-      {{ currentTutorial.description }}
+      {{ currentEntry.description }}
     </div>
     <div>
       <label><strong>Status:</strong></label>
-      {{ currentTutorial.published ? "Published" : "Pending" }}
+      {{ currentEntry.published ? "Published" : "Pending" }}
     </div>
     <a
       class="btn btn-warning"
-      routerLink="/tutorials/{{ currentTutorial.id }}"
+      routerLink="/entries/{{ currentEntry.id }}"
     >
       Edit
     </a>
   </div>
-  <div *ngIf="!currentTutorial">
+  <div *ngIf="!currentEntry">
     <br />
-    <p>Please click on a Tutorial...</p>
+    <p>Please click on an Entry...</p>
   </div>
 </div>
 <ng-template #editable>
-  <div *ngIf="currentTutorial.id" class="edit-form">
-    <h4>Tutorial</h4>
+  <div *ngIf="currentEntry.id" class="edit-form">
+    <h4>Entry</h4>
     <form>
       <div class="form-group mb-3">
         <label for="title" class="mb-2">Title</label>
@@ -34,7 +34,7 @@
           type="text"
           class="form-control"
           id="title"
-          [(ngModel)]="currentTutorial.title"
+          [(ngModel)]="currentEntry.title"
           name="title"
         />
       </div>
@@ -44,43 +44,43 @@
           type="text"
           class="form-control"
           id="description"
-          [(ngModel)]="currentTutorial.description"
+          [(ngModel)]="currentEntry.description"
           name="description"
         />
       </div>
       <div class="form-group mb-5">
         <label><strong>Status:</strong></label>
-        {{ currentTutorial.published ? "Published" : "Pending" }}
+        {{ currentEntry.published ? "Published" : "Pending" }}
       </div>
     </form>
     <button
       class="btn btn-primary me-2 mb-2"
-      *ngIf="currentTutorial.published"
+      *ngIf="currentEntry.published"
       (click)="updatePublished(false)"
     >
       UnPublish
     </button>
     <button
-      *ngIf="!currentTutorial.published"
+      *ngIf="!currentEntry.published"
       class="btn btn-primary me-2 mb-2"
       (click)="updatePublished(true)"
     >
       Publish
     </button>
-    <button class="btn btn-danger me-2 mb-2" (click)="deleteTutorial()">
+    <button class="btn btn-danger me-2 mb-2" (click)="deleteEntry()">
       Delete
     </button>
     <button
       type="submit"
       class="btn btn-success mb-2"
-      (click)="updateTutorial()"
+      (click)="updateEntry()"
     >
       Update
     </button>
     <p>{{ message }}</p>
   </div>
-  <div *ngIf="!currentTutorial.id">
+  <div *ngIf="!currentEntry.id">
     <br />
-    <p>Cannot access this Tutorial...</p>
+    <p>Cannot access this Entry...</p>
   </div>
 </ng-template>

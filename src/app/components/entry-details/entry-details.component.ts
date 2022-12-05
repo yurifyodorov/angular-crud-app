@@ -1,15 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TutorialService } from 'src/app/services/tutorial.service';
+import { EntryService } from 'src/app/services/entry.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Tutorial } from 'src/app/models/tutorial.model';
+import { Entry } from 'src/app/models/entry.model';
 @Component({
-  selector: 'app-tutorial-details',
-  templateUrl: './tutorial-details.component.html',
-  styleUrls: ['./tutorial-details.component.scss']
+  selector: 'app-entry-details',
+  templateUrl: './entry-details.component.html',
+  styleUrls: ['./entry-details.component.scss']
 })
-export class TutorialDetailsComponent implements OnInit {
+export class EntryDetailsComponent implements OnInit {
   @Input() viewMode = false;
-  @Input() currentTutorial: Tutorial = {
+  @Input() currentEntry: Entry = {
     title: '',
     description: '',
     published: false
@@ -17,20 +17,20 @@ export class TutorialDetailsComponent implements OnInit {
 
   message = '';
   constructor(
-    private tutorialService: TutorialService,
+    private entryService: EntryService,
     private route: ActivatedRoute,
     private router: Router) { }
   ngOnInit(): void {
     if (!this.viewMode) {
       this.message = '';
-      this.getTutorial(this.route.snapshot.params["id"]);
+      this.getEntry(this.route.snapshot.params["id"]);
     }
   }
-  getTutorial(id: string): void {
-    this.tutorialService.get(id)
+  getEntry(id: string): void {
+    this.entryService.get(id)
       .subscribe({
         next: (data) => {
-          this.currentTutorial = data;
+          this.currentEntry = data;
           console.log(data);
         },
         error: (e) => console.error(e)
@@ -38,38 +38,38 @@ export class TutorialDetailsComponent implements OnInit {
   }
   updatePublished(status: boolean): void {
     const data = {
-      title: this.currentTutorial.title,
-      description: this.currentTutorial.description,
+      title: this.currentEntry.title,
+      description: this.currentEntry.description,
       published: status
     };
     this.message = '';
-    this.tutorialService.update(this.currentTutorial.id, data)
+    this.entryService.update(this.currentEntry.id, data)
       .subscribe({
         next: (res) => {
           console.log(res);
-          this.currentTutorial.published = status;
+          this.currentEntry.published = status;
           this.message = res.message ? res.message : 'The status was updated successfully!';
         },
         error: (e) => console.error(e)
       });
   }
-  updateTutorial(): void {
+  updateEntry(): void {
     this.message = '';
-    this.tutorialService.update(this.currentTutorial.id, this.currentTutorial)
+    this.entryService.update(this.currentEntry.id, this.currentEntry)
       .subscribe({
         next: (res) => {
           console.log(res);
-          this.message = res.message ? res.message : 'This tutorial was updated successfully!';
+          this.message = res.message ? res.message : 'This entry was updated successfully!';
         },
         error: (e) => console.error(e)
       });
   }
-  deleteTutorial(): void {
-    this.tutorialService.delete(this.currentTutorial.id)
+  deleteEntry(): void {
+    this.entryService.delete(this.currentEntry.id)
       .subscribe({
         next: (res) => {
           console.log(res);
-          this.router.navigate(['/tutorials']);
+          this.router.navigate(['/entries']);
         },
         error: (e) => console.error(e)
       });
