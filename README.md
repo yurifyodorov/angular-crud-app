@@ -9,6 +9,27 @@ Run `ng serve` for a dev server.
 
 Navigate to `http://localhost:4200/`
 
+## API
+
+- `GET` : `http://localhost:8080/api/entries` - получить список записей
+- `GET` : `http://localhost:8080/api/entries/{{enrtyId}}` - получить запись
+- `POST` : `http://localhost:8080/api/entries` - создать новую запись
+```json
+{
+    "id": "{{entryId}}",
+    "description": "{{$randomLoremText}}",
+    "title": "{{$randomWord}}"
+}
+```
+- `PUT` : `http://localhost:8080/api/entries/{{enrtyId}}` - обновить запись
+```json
+{
+    "title": "test UPDATED",
+    "description": "description UPDATED"
+}
+```
+- `DELETE` : `http://localhost:8080/api/entries/{{enrtyId}}` - удалить запись
+- `DELETE` : `http://localhost:8080/api/entries` - удалить все записи
 
 
 ### Then
