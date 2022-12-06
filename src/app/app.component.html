@@ -1,16 +1,30 @@
-<div>
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">CRUD</a>
-    <div class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a routerLink="entries" class="nav-link">Список записей</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="add" class="nav-link">Добавить запись</a>
-      </li>
+<div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+  <header>
+    <div class="relative bg-white">
+      <div class="mx-auto flex max-w-7xl items-center justify-between py-6">
+        <div class="flex justify-start lg:w-0 lg:flex-1">
+          <h1 class="text-3xl font-normal">
+            <a href="#">CRUD App</a>
+          </h1>
+        </div>
+        <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
+          <a
+            href="#"
+            class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
+            routerLink="entries"
+          >
+            Список записей
+          </a>
+          <a
+            href="#"
+            class="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700"
+            routerLink="add"
+          >
+            Добавить запись
+          </a>
+        </div>
+      </div>
     </div>
-  </nav>
-  <div class="container mt-5">
-    <router-outlet></router-outlet>
-  </div>
+  </header>
+  <router-outlet></router-outlet>
 </div>
